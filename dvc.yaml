@@ -1,8 +1,55 @@
 stages:
   prepare:
-    cmd: python src/data/make_dataset.py
+    cmd: python src/data/import_raw_data.py
     deps:
-    - data/raw
-    - src/data/make_dataset.py
+    - data/raw_data
+    - src/data/import_raw_data.py
     outs:
-    - data/preprocessed
+    - data/processed_data/X_test.csv
+    - data/processed_data/X_train.csv
+    - data/processed_data/y_test.csv
+    - data/processed_data/y_train.csv
+  normalize:
+    cmd: python src/data/normalize.py
+    deps:
+    - data/processed_data/X_test.csv
+    - data/processed_data/X_train.csv
+    - data/processed_data/y_test.csv
+    - data/processed_data/y_train.csv
+    - src/data/normalize.py
+    outs:
+    - data/processed_data/X_train_scaled.pickle
+    - data/processed_data/X_test_scaled.pickle
+  gridsearch:
+    cmd: python src/models/gridsearch.py
+    deps:
+    - data/processed_data/X_test_scaled.pickle
+    - data/processed_data/X_train_scaled.pickle
+    - data/processed_data/y_test.csv
+    - data/processed_data/y_train.csv
+    - src/models/gridsearch.py
+    outs:
+    - models/best_params.pkl
+  training:
+    cmd: python src/models/training.py
+    deps:
+    - data/processed_data/X_test_scaled.pickle
+    - data/processed_data/X_train_scaled.pickle
+    - data/processed_data/y_test.csv
+    - data/processed_data/y_train.csv
+    - models/best_params.pkl
+    - src/models/training.py
+    outs:
+    - models/best_model.pkl
+  evaluation:
+    cmd: python src/models/evaluation.py
+    deps:
+    - data/processed_data/X_test_scaled.pickle
+    - data/processed_data/X_train_scaled.pickle
+    - data/processed_data/y_test.csv
+    - data/processed_data/y_train.csv
+    - models/best_model.pkl
+    - src/models/evaluation.py
+    outs:
+    - metrics/scores.json
+    - data/predictions.csv
