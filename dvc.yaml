@@ -14,8 +14,6 @@ stages:
     deps:
     - data/processed_data/X_test.csv
     - data/processed_data/X_train.csv
-    - data/processed_data/y_test.csv
-    - data/processed_data/y_train.csv
     - src/data/normalize.py
     outs:
     - data/processed_data/X_train_scaled.pickle
