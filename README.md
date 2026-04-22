@@ -1,8 +1,12 @@
 # Examen DVC et Dagshub
 Nom : Mayolini
+
 Prénom : Aurore
+
 Mail : auroremayo@hotmail.fr
+
 Dépôt DagsHub : https://dagshub.com/auroremayo/examen-dvc-aurore
+
 Dans ce dépôt vous trouverez l'architecture proposé pour mettre en place la solution de l'examen. 
 
 ```bash       
