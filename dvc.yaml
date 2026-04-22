@@ -31,9 +31,7 @@ stages:
   training:
     cmd: python src/models/training.py
     deps:
-    - data/processed_data/X_test_scaled.pickle
     - data/processed_data/X_train_scaled.pickle
-    - data/processed_data/y_test.csv
     - data/processed_data/y_train.csv
     - models/best_params.pkl
     - src/models/training.py
