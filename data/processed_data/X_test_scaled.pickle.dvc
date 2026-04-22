@@ -1,0 +1,5 @@
+outs:
+- md5: a80f5a2cd283faa3ad41177b6934a9bc
+  size: 35755
+  hash: md5
+  path: X_test_scaled.pickle

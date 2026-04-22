@@ -1,0 +1,5 @@
+outs:
+- md5: 6141a1a03ac6a66400c2828d17d37f07
+  size: 82164
+  hash: md5
+  path: X_train_scaled.pickle
